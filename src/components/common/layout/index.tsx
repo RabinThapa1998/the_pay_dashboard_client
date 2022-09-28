@@ -7,10 +7,12 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
+import { NavLink, redirect, useNavigate } from 'react-router-dom';
 const { Header, Sider, Content } = Layout;
 
 const Index = ({ children }: { children: React.ReactNode }) => {
   const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
   return (
     <Layout className='h-screen'>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -23,17 +25,19 @@ const Index = ({ children }: { children: React.ReactNode }) => {
             {
               key: '1',
               icon: <UserOutlined />,
-              label: 'nav 1',
+              label: 'Dashboard',
+              onClick: () => navigate('/'),
             },
             {
               key: '2',
               icon: <VideoCameraOutlined />,
-              label: 'nav 2',
+              label: 'Programs',
+              onClick: () => navigate('/programs'),
             },
             {
               key: '3',
               icon: <UploadOutlined />,
-              label: 'nav 3',
+              label: 'Payments',
             },
           ]}
         />

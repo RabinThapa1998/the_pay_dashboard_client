@@ -15,7 +15,8 @@
   "dependencies": {
     "antd": "^4.23.2",
     "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react-dom": "^18.1.0",
+    "react-router-dom": "^6.4.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.9",
@@ -37,8 +38,8 @@
     "typescript": "^4.6.3",
     "vite": "^2.9.9",
     "vite-tsconfig-paths": "^3.5.0"
-  }
-  "author": { 
+  },
+  "author": {
     "name": "Rabin Thapa",
     "email": "rabinthapa.rbt@gmail.com",
     "github": "https://github.com/RabinThapa1998"
