@@ -59,10 +59,9 @@ const Index = ({ children }: { children: React.ReactNode }) => {
           style={{
             margin: '24px 16px',
             padding: 24,
-            minHeight: 280,
+            minHeight: '80vh',
           }}
         >
-          <p className='text-lg'>hello</p>
           {children}
         </Content>
       </Layout>

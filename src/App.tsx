@@ -1,6 +1,5 @@
-import Layout from '~/components/common/layout';
-import Dashboard from '~containers/dashboard';
-import Programs from '~containers/programs';
+import { Layout } from '~/components';
+import { Dashboard, Programs } from '~/containers';
 
 import { Routes, Route, Link } from 'react-router-dom';
 function App() {
