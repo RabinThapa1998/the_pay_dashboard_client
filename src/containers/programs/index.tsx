@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Form } from '~/components';
+import { Card, FormComponent } from '~/components';
 import { Button, Col, Row } from 'antd';
 import { Modal } from '~/components/common';
 
@@ -22,8 +22,9 @@ export function Programs() {
         open={isModalOpen}
         onCancel={() => setIsModalOpen(false)}
         onOk={() => setIsModalOpen(false)}
+        footer={null}
       >
-        {<Form />}
+        {<FormComponent closeModal={() => setIsModalOpen(false)} />}
       </Modal>
     </Row>
   );

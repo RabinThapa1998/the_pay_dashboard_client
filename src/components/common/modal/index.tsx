@@ -1,19 +1,17 @@
-import { Button, Modal } from 'antd';
+import { Button, Modal, ModalProps } from 'antd';
 import React, { useState } from 'react';
 
-interface IModal {
+interface IModal extends ModalProps {
   children: React.ReactNode;
   open: boolean;
   onOk: () => void;
   onCancel: () => void;
 }
-function Index({ children, onCancel, onOk, open }: IModal) {
+function Index({ children, onCancel, onOk, open, ...rest }: IModal) {
   return (
-    <>
-      <Modal title='Basic Modal' open={open} onOk={onOk} onCancel={onCancel}>
-        {children}
-      </Modal>
-    </>
+    <Modal title='Basic Modal' open={open} onOk={onOk} onCancel={onCancel} {...rest}>
+      {children}
+    </Modal>
   );
 }
 
