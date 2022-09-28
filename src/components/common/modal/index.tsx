@@ -9,7 +9,7 @@ interface IModal extends ModalProps {
 }
 function Index({ children, onCancel, onOk, open, ...rest }: IModal) {
   return (
-    <Modal title='Basic Modal' open={open} onOk={onOk} onCancel={onCancel} {...rest}>
+    <Modal open={open} onOk={onOk} onCancel={onCancel} {...rest}>
       {children}
     </Modal>
   );

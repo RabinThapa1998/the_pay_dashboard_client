@@ -7,10 +7,10 @@ export function Programs() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <Row gutter={16}>
+    <Row gutter={[16, 16]}>
       <Col span={24}>
         <Button type='primary' onClick={() => setIsModalOpen(true)} className='self-end'>
-          Open Modal
+          Add Program
         </Button>
       </Col>
       {[1, 2, 3, 4].map((item, index) => (
@@ -23,6 +23,7 @@ export function Programs() {
         onCancel={() => setIsModalOpen(false)}
         onOk={() => setIsModalOpen(false)}
         footer={null}
+        title={'Add Program'}
       >
         {<FormComponent closeModal={() => setIsModalOpen(false)} />}
       </Modal>
