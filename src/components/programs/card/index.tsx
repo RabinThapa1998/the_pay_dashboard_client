@@ -3,29 +3,35 @@ import { Avatar, Card } from 'antd';
 import React from 'react';
 const { Meta } = Card;
 
-const Index = () => (
-  <Card
-    style={{
-      width: '100%',
-    }}
-    cover={
-      <img
-        alt='example'
-        src='https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'
+interface ICard {
+  title: string;
+  desc: string;
+}
+function Index({ title, desc }: ICard) {
+  return (
+    <Card
+      style={{
+        width: '100%',
+      }}
+      cover={
+        <img
+          alt='example'
+          src='https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'
+        />
+      }
+      actions={[
+        // <SettingOutlined key='setting' />,
+        // <EditOutlined key='edit' />,
+        <EllipsisOutlined key='ellipsis' />,
+      ]}
+    >
+      <Meta
+        // avatar={<Avatar src='https://joeschmoe.io/api/v1/random' />}
+        title={title}
+        description={desc}
       />
-    }
-    actions={[
-      <SettingOutlined key='setting' />,
-      <EditOutlined key='edit' />,
-      <EllipsisOutlined key='ellipsis' />,
-    ]}
-  >
-    <Meta
-      avatar={<Avatar src='https://joeschmoe.io/api/v1/random' />}
-      title='Card title'
-      description='This is the description'
-    />
-  </Card>
-);
+    </Card>
+  );
+}
 
 export default Index;

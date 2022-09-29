@@ -35,7 +35,7 @@ export function Programs() {
       {data?.data.length ? (
         data.data.map((item, index) => (
           <Col key={index} span={6}>
-            <Card />
+            <Card title={item.name} desc={item.desc} />
           </Col>
         ))
       ) : (
