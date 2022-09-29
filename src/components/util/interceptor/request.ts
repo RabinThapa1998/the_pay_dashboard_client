@@ -5,6 +5,11 @@ const client = axios.create({ baseURL: BASE_URL });
 
 export const request = ({ ...options }) => {
   // client.defaults.headers.common.Authorization = `Bearer ${Cookies.get('accessToken')}`;
-
-  return client(options);
+  const onSuccess = (response: any) => {
+    return response.data;
+  };
+  const onError = (error: any) => {
+    return error.response.data;
+  };
+  return client(options).then(onSuccess).catch(onError);
 };
