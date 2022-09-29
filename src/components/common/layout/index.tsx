@@ -15,7 +15,19 @@ const Index = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
   return (
     <Layout className='h-screen'>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Sider
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        style={{
+          overflow: 'auto',
+          height: '100vh',
+          position: 'fixed',
+          left: 0,
+          top: 0,
+          bottom: 0,
+        }}
+      >
         <div className='logo' />
         <Menu
           theme='dark'
@@ -42,7 +54,10 @@ const Index = ({ children }: { children: React.ReactNode }) => {
           ]}
         />
       </Sider>
-      <Layout className='site-layout'>
+      <Layout
+        className='site-layout'
+        style={{ marginLeft: collapsed ? 80 : 200, transition: 'margin 0.2s' }}
+      >
         <Header
           className='site-layout-background'
           style={{
@@ -54,16 +69,7 @@ const Index = ({ children }: { children: React.ReactNode }) => {
             onClick: () => setCollapsed(!collapsed),
           })}
         </Header>
-        <Content
-          className='site-layout-background'
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: '80vh',
-          }}
-        >
-          {children}
-        </Content>
+        <Content className='site-layout-background h-full p-5 mt-5'>{children}</Content>
       </Layout>
     </Layout>
   );
