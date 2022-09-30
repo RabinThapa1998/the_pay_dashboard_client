@@ -9,7 +9,7 @@ interface ICard {
   desc: string;
   programId: string;
 }
-function Index({ title, desc, programId }: ICard) {
+function CardComponent({ title, desc, programId }: ICard) {
   const navigate = useNavigate();
   const handleClickMore = () => {
     console.log('card clicked');
@@ -41,4 +41,4 @@ function Index({ title, desc, programId }: ICard) {
   );
 }
 
-export default Index;
+export { CardComponent };

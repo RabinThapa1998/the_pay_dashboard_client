@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, FormComponent } from '~/components';
+import { FormComponent, TableComponent } from '~/components';
 import { Button, Col, Row } from 'antd';
 import { Modal } from '~/components/common';
 import { useQuery } from '@tanstack/react-query';
@@ -29,7 +29,7 @@ export function ProgramsDetail() {
     <Row gutter={[16, 16]}>
       <Col span={24}>
         {res ? (
-          res.data.contestents.map((item) => <p key={item.id}>{item.email}</p>)
+          <TableComponent data={res.data.contestents} />
         ) : (
           <Space direction='horizontal' style={{ width: '100%', justifyContent: 'center' }}>
             <Spin size='large' />

@@ -1,3 +1,4 @@
-import Card from './card';
 import FormComponent from './form-component';
-export { Card, FormComponent };
+export { TableComponent } from './table';
+export { CardComponent } from './card';
+export { FormComponent };

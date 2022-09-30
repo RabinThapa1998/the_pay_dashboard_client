@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, FormComponent } from '~/components';
+import { CardComponent, FormComponent } from '~/components';
 import { Button, Col, Row } from 'antd';
 import { Modal } from '~/components/common';
 import { useQuery } from '@tanstack/react-query';
@@ -35,7 +35,7 @@ export function Programs() {
       {data?.data.length ? (
         data.data.map((item, index) => (
           <Col key={index} span={6}>
-            <Card title={item.name} desc={item.desc} programId={item.id} />
+            <CardComponent title={item.name} desc={item.desc} programId={item.id} />
           </Col>
         ))
       ) : (
