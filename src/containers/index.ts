@@ -1,2 +1,2 @@
-export { Programs } from './programs';
+export { Programs, ProgramsDetail } from './programs';
 export { Dashboard } from './dashboard';

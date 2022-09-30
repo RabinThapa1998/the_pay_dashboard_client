@@ -1,13 +1,20 @@
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { Avatar, Card } from 'antd';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 const { Meta } = Card;
 
 interface ICard {
   title: string;
   desc: string;
+  programId: string;
 }
-function Index({ title, desc }: ICard) {
+function Index({ title, desc, programId }: ICard) {
+  const navigate = useNavigate();
+  const handleClickMore = () => {
+    console.log('card clicked');
+    navigate(`/programs/${programId}`);
+  };
   return (
     <Card
       style={{
@@ -22,7 +29,7 @@ function Index({ title, desc }: ICard) {
       actions={[
         // <SettingOutlined key='setting' />,
         // <EditOutlined key='edit' />,
-        <EllipsisOutlined key='ellipsis' />,
+        <EllipsisOutlined key='ellipsis' onClick={handleClickMore} />,
       ]}
     >
       <Meta
