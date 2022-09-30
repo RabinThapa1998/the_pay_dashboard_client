@@ -1,5 +1,14 @@
 import { Space, Table, Tag } from 'antd';
+import { Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+
 const columns = [
+  {
+    title: 'Profile',
+    dataIndex: 'photo_url',
+    key: 'profile',
+    render: (url: string) => <Avatar size={56} src={url} icon={<UserOutlined />} />,
+  },
   {
     title: 'Full Name',
     dataIndex: 'full_name',
