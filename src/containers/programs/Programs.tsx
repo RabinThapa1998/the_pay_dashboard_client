@@ -39,11 +39,13 @@ export function Programs() {
           </Col>
         ))
       ) : (
-        <Col span={24}>
-          <Space direction='horizontal' style={{ width: '100%', justifyContent: 'center' }}>
-            <Spin size='large' />
-          </Space>
-        </Col>
+        <>
+          {[1, 2, 3].map((item) => (
+            <Col span={6} key={item}>
+              <CardComponent title={''} desc={''} programId={''} loading />
+            </Col>
+          ))}
+        </>
       )}
       <Modal
         open={isModalOpen}

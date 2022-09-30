@@ -1,15 +1,15 @@
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
-import { Avatar, Card } from 'antd';
+import { Avatar, Card, CardProps } from 'antd';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 const { Meta } = Card;
 
-interface ICard {
+interface ICard extends CardProps {
   title: string;
   desc: string;
   programId: string;
 }
-function CardComponent({ title, desc, programId }: ICard) {
+function CardComponent({ title, desc, programId, ...rest }: ICard) {
   const navigate = useNavigate();
   const handleClickMore = () => {
     console.log('card clicked');
@@ -31,6 +31,7 @@ function CardComponent({ title, desc, programId }: ICard) {
         // <EditOutlined key='edit' />,
         <EllipsisOutlined key='ellipsis' onClick={handleClickMore} />,
       ]}
+      {...rest}
     >
       <Meta
         // avatar={<Avatar src='https://joeschmoe.io/api/v1/random' />}
