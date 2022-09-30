@@ -8,7 +8,7 @@ const FormComponent: React.FC<{ closeModal: () => void }> = ({ closeModal }) => 
   const { mutate, isLoading } = useMutation(
     (values) =>
       request({
-        url: '/program',
+        url: '/programs',
         method: 'POST',
         data: values,
       }),
