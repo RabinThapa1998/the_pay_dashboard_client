@@ -15,7 +15,7 @@ export function ProgramsDetail() {
     (): Promise<{
       data: {
         contestents: { [key: string]: string }[];
-        programs: any;
+        program: any;
       };
     }> =>
       request({
@@ -24,9 +24,14 @@ export function ProgramsDetail() {
       }),
   );
 
-  //   console.log('🚀 ~ file: ProgramsDetail.tsx ~ line 13 ~ ProgramsDetail ~ data', data);
+  console.log('🚀 ~ file: ProgramsDetail.tsx ~ line 13 ~ ProgramsDetail ~ data', res);
   return (
     <Row gutter={[16, 16]}>
+      <Col span={24}>
+        {/* <Space direction='horizontal' style={{ width: '100%', justifyContent: 'center' }}> */}
+        <h3 className='text-center text-2xl uppercase'>{res?.data?.program?.name}</h3>
+        {/* </Space> */}
+      </Col>
       <Col span={24}>
         {res ? (
           <TableComponent data={res.data.contestents} />
