@@ -16,7 +16,7 @@ export function ProgramsDetail() {
     ['programs', id],
     (): Promise<{
       data: {
-        contestents: { [key: string]: string }[];
+        contestants: { [key: string]: string }[];
         program: any;
       };
     }> =>
@@ -46,7 +46,7 @@ export function ProgramsDetail() {
       </Col>
       <Col span={24}>
         {res ? (
-          <TableComponent data={res.data.contestents} />
+          <TableComponent data={res.data.contestants} />
         ) : (
           <Space direction='horizontal' style={{ width: '100%', justifyContent: 'center' }}>
             <Spin size='large' />
