@@ -60,7 +60,12 @@ export function ProgramsDetail() {
         footer={null}
         title={'Add Program'}
       >
-        {<ContestantAddForm closeModal={handleModalClose} />}
+        {
+          <ContestantAddForm
+            closeModal={handleModalClose}
+            program={{ programId: res?.data.program.id, programName: res?.data.program.name }}
+          />
+        }
       </Modal>
     </Row>
   );

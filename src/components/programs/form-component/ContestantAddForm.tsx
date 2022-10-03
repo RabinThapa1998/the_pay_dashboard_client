@@ -5,7 +5,10 @@ import { useMutation } from '@tanstack/react-query';
 const { TextArea } = Input;
 const { Option } = Select;
 
-const ContestantAddForm: React.FC<{ closeModal: () => void }> = ({ closeModal }) => {
+const ContestantAddForm: React.FC<{
+  closeModal: () => void;
+  program: { programId: string; programName: string };
+}> = ({ closeModal, program }) => {
   const { mutate, isLoading } = useMutation(
     (values) =>
       request({
@@ -16,10 +19,12 @@ const ContestantAddForm: React.FC<{ closeModal: () => void }> = ({ closeModal })
     {
       onSuccess: () => {
         message.success('Contestant added successfully');
-        closeModal();
+        setTimeout(() => {
+          closeModal();
+        }, 1000);
       },
       onError: (error: any) => {
-        console.log('🚀 ~ file: index.tsx ~ line 20 ~ error', error);
+        console.log('🚀 ~ file: ContestantAddForm.tsx ~ line 27 ~ error', error);
         message.error(error.response.data.errors[0].message);
       },
     },
@@ -44,22 +49,20 @@ const ContestantAddForm: React.FC<{ closeModal: () => void }> = ({ closeModal })
     >
       <Form.Item
         label='Full Name'
-        name='name'
+        name='full_name'
         rules={[{ required: true, message: 'Full name is required!' }]}
       >
         <Input />
       </Form.Item>
-      <Form.Item label='Progam Name' name='program' rules={[{ required: true }]}>
-        <Select defaultValue='lucy' style={{ width: 120 }}>
-          <Option value='jack'>Jack</Option>
-          <Option value='lucy'>Lucy</Option>
-          <Option value='Yiminghe'>yiminghe</Option>
+      <Form.Item label='Progam Name' name='program'>
+        <Select value={program.programId}>
+          <Option value={program.programId}>{program.programName}</Option>
         </Select>
       </Form.Item>
       <Form.Item
         label='Email'
         name='email'
-        rules={[{ required: true, message: 'Email is required' }]}
+        rules={[{ required: true, message: 'Email is required', type: 'email' }]}
       >
         <Input />
       </Form.Item>
