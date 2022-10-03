@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FormComponent, TableComponent } from '~/components';
+import { TableComponent } from '~/components';
 import { Button, Col, Row } from 'antd';
 import { Modal } from '~/components/common';
 import { useQuery } from '@tanstack/react-query';
@@ -9,7 +9,8 @@ import { useParams } from 'react-router-dom';
 
 export function ProgramsDetail() {
   const { id } = useParams();
-  console.log('🚀 ~ file: ProgramsDetail.tsx ~ line 12 ~ ProgramsDetail ~ id', id);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const { data: res, isLoading } = useQuery(
     ['programs', id],
     (): Promise<{
@@ -23,14 +24,21 @@ export function ProgramsDetail() {
         method: 'GET',
       }),
   );
+  const handleAddContestants = () => {
+    setIsModalOpen(true);
+  };
 
-  console.log('🚀 ~ file: ProgramsDetail.tsx ~ line 13 ~ ProgramsDetail ~ data', res);
   return (
     <Row gutter={[16, 16]}>
       <Col span={24}>
         {/* <Space direction='horizontal' style={{ width: '100%', justifyContent: 'center' }}> */}
         <h3 className='text-center text-2xl uppercase'>{res?.data?.program?.name}</h3>
         {/* </Space> */}
+      </Col>
+      <Col span={24}>
+        <Space direction='horizontal' style={{ width: '100%', justifyContent: 'flex-end' }}>
+          <Button onClick={handleAddContestants}>Add Contestants</Button>
+        </Space>
       </Col>
       <Col span={24}>
         {res ? (
@@ -41,6 +49,15 @@ export function ProgramsDetail() {
           </Space>
         )}
       </Col>
+      <Modal
+        open={isModalOpen}
+        onCancel={() => setIsModalOpen(false)}
+        onOk={() => setIsModalOpen(false)}
+        footer={null}
+        title={'Add Program'}
+      >
+        {<p>add contestants</p>}
+      </Modal>
     </Row>
   );
 }
