@@ -68,6 +68,9 @@ const ContestantAddForm: React.FC<{
       >
         <Input />
       </Form.Item>
+      <Form.Item label='Age' name='age'>
+        <Input />
+      </Form.Item>
 
       <Form.Item>
         <Button type='primary' htmlType='submit' loading={isLoading}>
