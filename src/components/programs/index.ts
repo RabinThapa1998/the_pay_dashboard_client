@@ -1,4 +1,3 @@
-import FormComponent from './form-component';
 export { TableComponent } from './table';
 export { CardComponent } from './card';
-export { FormComponent };
+export { ProgramAddForm } from './form-component';

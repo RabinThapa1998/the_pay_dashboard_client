@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { request } from '~components/util';
 import { Space, Spin } from 'antd';
 import { useParams } from 'react-router-dom';
+import { ContestantAddForm } from '~components/programs/form-component';
 
 export function ProgramsDetail() {
   const { id } = useParams();
@@ -28,6 +29,9 @@ export function ProgramsDetail() {
     setIsModalOpen(true);
   };
 
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
   return (
     <Row gutter={[16, 16]}>
       <Col span={24}>
@@ -56,7 +60,7 @@ export function ProgramsDetail() {
         footer={null}
         title={'Add Program'}
       >
-        {<p>add contestants</p>}
+        {<ContestantAddForm closeModal={handleModalClose} />}
       </Modal>
     </Row>
   );

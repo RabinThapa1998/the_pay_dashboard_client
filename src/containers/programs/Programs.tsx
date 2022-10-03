@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CardComponent, FormComponent } from '~/components';
+import { CardComponent, ProgramAddForm } from '~/components';
 import { Button, Col, Row } from 'antd';
 import { Modal } from '~/components/common';
 import { useQuery } from '@tanstack/react-query';
@@ -54,7 +54,7 @@ export function Programs() {
         footer={null}
         title={'Add Program'}
       >
-        {<FormComponent closeModal={() => setIsModalOpen(false)} />}
+        {<ProgramAddForm closeModal={() => setIsModalOpen(false)} />}
       </Modal>
     </Row>
   );
