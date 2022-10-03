@@ -41,7 +41,7 @@ const ContestantAddForm: React.FC<{
   return (
     <Form
       name='contestants'
-      initialValues={{ remember: true }}
+      initialValues={{ remember: true, program: program.programId }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete='off'
@@ -54,9 +54,11 @@ const ContestantAddForm: React.FC<{
       >
         <Input />
       </Form.Item>
-      <Form.Item label='Progam Name' name='program'>
+      <Form.Item label='Progam Name' name='program' rules={[{ required: true }]}>
         <Select value={program.programId}>
-          <Option value={program.programId}>{program.programName}</Option>
+          <Option value={program.programId} key={program.programId}>
+            {program.programName}
+          </Option>
         </Select>
       </Form.Item>
       <Form.Item
