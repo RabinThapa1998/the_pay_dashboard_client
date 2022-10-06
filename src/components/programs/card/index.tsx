@@ -1,7 +1,8 @@
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { EditOutlined, EllipsisOutlined, SettingOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Avatar, Card, CardProps } from 'antd';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
 const { Meta } = Card;
 
 interface ICard extends CardProps {
@@ -27,7 +28,7 @@ function CardComponent({ title, desc, programId, ...rest }: ICard) {
         />
       }
       actions={[
-        // <SettingOutlined key='setting' />,
+        <SettingOutlined key='setting' />,
         // <EditOutlined key='edit' />,
         <EllipsisOutlined key='ellipsis' onClick={handleClickMore} />,
       ]}

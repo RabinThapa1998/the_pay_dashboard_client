@@ -7,6 +7,7 @@ import { request } from '~components/util';
 import { Space, Spin } from 'antd';
 import { useParams } from 'react-router-dom';
 import { ContestantAddForm } from '~components/programs/form-component';
+import { SettingOutlined } from '@ant-design/icons';
 
 export function ProgramsDetail() {
   const { id } = useParams();
@@ -32,6 +33,10 @@ export function ProgramsDetail() {
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
+
+  const handleContestantsSettings = () => {
+    console.log('contestants settings clicked');
+  };
   return (
     <Row gutter={[16, 16]}>
       <Col span={24}>
@@ -41,7 +46,12 @@ export function ProgramsDetail() {
       </Col>
       <Col span={24}>
         <Space direction='horizontal' style={{ width: '100%', justifyContent: 'flex-end' }}>
-          <Button onClick={handleAddContestants}>Add Contestants</Button>
+          <Button.Group>
+            <Button onClick={handleAddContestants}>Add Contestants</Button>
+            <Button onClick={handleContestantsSettings}>
+              <SettingOutlined />
+            </Button>
+          </Button.Group>
         </Space>
       </Col>
       <Col span={24}>
