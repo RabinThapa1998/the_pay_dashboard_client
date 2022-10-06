@@ -1,6 +1,6 @@
 import { EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { useMutation } from '@tanstack/react-query';
-import { Avatar, Card, CardProps, Button } from 'antd';
+import { Avatar, Card, CardProps, Button, message } from 'antd';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { request } from '~/components/util';
@@ -23,9 +23,11 @@ function CardComponent({ title, desc, programId, ...rest }: ICard) {
       }),
     {
       onSuccess: () => {
+        message.success('Program deleted successfully!');
         setIsModalOpen(false);
       },
       onError: () => {
+        message.error('Error Try Again!');
         setIsModalOpen(false);
       },
     },
