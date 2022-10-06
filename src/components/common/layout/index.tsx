@@ -35,7 +35,7 @@ const Index = ({ children }: { children: React.ReactNode }) => {
           theme='dark'
           mode='inline'
           // defaultSelectedKeys={['1']}
-          selectedKeys={pathname === '/' ? ['1'] : pathname === '/programs' ? ['2'] : ['3']}
+          selectedKeys={pathname === '/' ? ['1'] : pathname.match(/programs/) ? ['2'] : ['3']}
           items={[
             {
               key: '1',
