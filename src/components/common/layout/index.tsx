@@ -4,9 +4,10 @@ import {
   MenuUnfoldOutlined,
   UploadOutlined,
   UserOutlined,
+  ArrowLeftOutlined,
   VideoCameraOutlined,
 } from '@ant-design/icons';
-import { Layout, Menu } from 'antd';
+import { Button, Layout, Menu } from 'antd';
 import { NavLink, redirect, useNavigate, useLocation } from 'react-router-dom';
 const { Header, Sider, Content } = Layout;
 
@@ -71,7 +72,14 @@ const Index = ({ children }: { children: React.ReactNode }) => {
           style={{
             padding: 0,
           }}
-        ></Header>
+        >
+          <Button
+            shape='circle'
+            className='mx-5'
+            onClick={() => navigate(-1)}
+            icon={<ArrowLeftOutlined />}
+          ></Button>
+        </Header>
         <Content className='site-layout-background h-full p-5 mt-5'>{children}</Content>
       </Layout>
     </Layout>
