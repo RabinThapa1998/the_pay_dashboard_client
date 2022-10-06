@@ -5,6 +5,7 @@ import { Modal } from '~/components/common';
 import { useQuery } from '@tanstack/react-query';
 import { request } from '~components/util';
 import { Space, Spin } from 'antd';
+import { AppstoreAddOutlined } from '@ant-design/icons';
 
 export function Programs() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -27,7 +28,12 @@ export function Programs() {
     <Row gutter={[16, 16]}>
       <Col span={24}>
         <Space direction='horizontal' style={{ width: '100%', justifyContent: 'flex-end' }}>
-          <Button type='primary' onClick={() => setIsModalOpen(true)} className='self-end'>
+          <Button
+            type='primary'
+            onClick={() => setIsModalOpen(true)}
+            className='self-end'
+            icon={<AppstoreAddOutlined />}
+          >
             Add Program
           </Button>
         </Space>
