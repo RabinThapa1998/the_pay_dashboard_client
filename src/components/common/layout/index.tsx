@@ -7,11 +7,13 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
-import { NavLink, redirect, useNavigate } from 'react-router-dom';
+import { NavLink, redirect, useNavigate, useLocation } from 'react-router-dom';
 const { Header, Sider, Content } = Layout;
 
 const Index = ({ children }: { children: React.ReactNode }) => {
   const [collapsed, setCollapsed] = useState(false);
+  const { pathname } = useLocation();
+  console.log('🚀 ~ file: index.tsx ~ line 16 ~ Index ~ path', pathname);
   const navigate = useNavigate();
   return (
     <Layout className='h-screen'>
@@ -32,7 +34,8 @@ const Index = ({ children }: { children: React.ReactNode }) => {
         <Menu
           theme='dark'
           mode='inline'
-          defaultSelectedKeys={['1']}
+          // defaultSelectedKeys={['1']}
+          selectedKeys={pathname === '/' ? ['1'] : pathname === '/programs' ? ['2'] : ['3']}
           items={[
             {
               key: '1',
