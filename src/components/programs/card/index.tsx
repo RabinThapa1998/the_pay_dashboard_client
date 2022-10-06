@@ -1,7 +1,8 @@
-import { EditOutlined, EllipsisOutlined, SettingOutlined, DeleteOutlined } from '@ant-design/icons';
-import { Avatar, Card, CardProps } from 'antd';
-import React from 'react';
+import { EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { Avatar, Card, CardProps, Button } from 'antd';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Modal } from '~components/common';
 
 const { Meta } = Card;
 
@@ -11,10 +12,23 @@ interface ICard extends CardProps {
   programId: string;
 }
 function CardComponent({ title, desc, programId, ...rest }: ICard) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const navigate = useNavigate();
   const handleClickMore = () => {
     console.log('card clicked');
     navigate(`/programs/${programId}`);
+  };
+
+  const handleSetting = () => {
+    setIsModalOpen(true);
+    console.log('setting clicked');
+  };
+  const handleModalOk = () => {
+    setIsModalOpen(false);
+  };
+  const hanldeModalCancel = () => {
+    setIsModalOpen(false);
   };
   return (
     <Card
@@ -28,7 +42,7 @@ function CardComponent({ title, desc, programId, ...rest }: ICard) {
         />
       }
       actions={[
-        <SettingOutlined key='setting' />,
+        <SettingOutlined key='setting' onClick={handleSetting} />,
         // <EditOutlined key='edit' />,
         <EllipsisOutlined key='ellipsis' onClick={handleClickMore} />,
       ]}
@@ -39,6 +53,9 @@ function CardComponent({ title, desc, programId, ...rest }: ICard) {
         title={title}
         description={desc}
       />
+      <Modal open={isModalOpen} onOk={handleModalOk} onCancel={hanldeModalCancel}>
+        {<p>Setting</p>}
+      </Modal>
     </Card>
   );
 }
