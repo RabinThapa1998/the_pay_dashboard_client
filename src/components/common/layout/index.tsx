@@ -30,7 +30,12 @@ const Index = ({ children }: { children: React.ReactNode }) => {
           bottom: 0,
         }}
       >
-        <div className='logo' />
+        <div className='flex flex-row justify-end'>
+          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+            className: 'trigger text-white',
+            onClick: () => setCollapsed(!collapsed),
+          })}
+        </div>
         <Menu
           theme='dark'
           mode='inline'
@@ -66,12 +71,7 @@ const Index = ({ children }: { children: React.ReactNode }) => {
           style={{
             padding: 0,
           }}
-        >
-          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-            className: 'trigger',
-            onClick: () => setCollapsed(!collapsed),
-          })}
-        </Header>
+        ></Header>
         <Content className='site-layout-background h-full p-5 mt-5'>{children}</Content>
       </Layout>
     </Layout>
