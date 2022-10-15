@@ -6,7 +6,9 @@ const { TextArea } = Input;
 
 const ProgramAddForm: React.FC<{ closeModal: () => void }> = ({ closeModal }) => {
   const [fieldCount, setFieldCount] = useState([0]);
-  const [votesCost, setVotesCost] = useState([]);
+  const [votesCost, setVotesCost] = useState({});
+  const [votesCostField, setVotesCostField] = useState<any>([]);
+  console.log('🚀 ~ file: ProgramAddForm.tsx ~ line 11 ~ votesCostField', votesCostField);
   const { mutate, isLoading } = useMutation(
     (values) =>
       request({
@@ -28,9 +30,17 @@ const ProgramAddForm: React.FC<{ closeModal: () => void }> = ({ closeModal }) =>
 
   const handleVotesChange = (value: any) => {
     console.log('votes', value);
+    setVotesCost({
+      ...votesCost,
+      votes: value,
+    });
   };
   const handleCostsChange = (value: any) => {
     console.log('cost', value);
+    setVotesCost({
+      ...votesCost,
+      cost: value,
+    });
   };
 
   const onFinish = async (values: any) => {
@@ -43,6 +53,9 @@ const ProgramAddForm: React.FC<{ closeModal: () => void }> = ({ closeModal }) =>
   };
   const handleVotesCostAdd = (i: number) => {
     setFieldCount([...fieldCount, i]);
+
+    setVotesCostField([...votesCostField, votesCost]);
+    setVotesCost({});
   };
   const handleVotesCostDelete = (i: number) => {
     const newFieldCount = fieldCount.filter((item) => item !== i);
