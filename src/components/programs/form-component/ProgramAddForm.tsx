@@ -6,6 +6,7 @@ const { TextArea } = Input;
 
 const ProgramAddForm: React.FC<{ closeModal: () => void }> = ({ closeModal }) => {
   const [fieldCount, setFieldCount] = useState([0]);
+  const [votesCost, setVotesCost] = useState([]);
   const { mutate, isLoading } = useMutation(
     (values) =>
       request({
@@ -43,6 +44,10 @@ const ProgramAddForm: React.FC<{ closeModal: () => void }> = ({ closeModal }) =>
   const handleVotesCostAdd = (i: number) => {
     setFieldCount([...fieldCount, i]);
   };
+  const handleVotesCostDelete = (i: number) => {
+    const newFieldCount = fieldCount.filter((item) => item !== i);
+    setFieldCount(newFieldCount);
+  };
 
   return (
     <Form
@@ -69,9 +74,10 @@ const ProgramAddForm: React.FC<{ closeModal: () => void }> = ({ closeModal }) =>
 
       {fieldCount.map((item) => (
         <Input.Group compact key={item}>
-          <InputNumber name='votes' onChange={handleVotesChange} />
-          <InputNumber name='cost' onChange={handleCostsChange} />
+          <InputNumber name='votes' onChange={handleVotesChange} type='number' />
+          <InputNumber name='cost' onChange={handleCostsChange} type='number' />
           <Button onClick={() => handleVotesCostAdd(item + 1)}>Add</Button>
+          {item > 0 && <Button onClick={() => handleVotesCostDelete(item)}>Delete</Button>}
         </Input.Group>
       ))}
 
