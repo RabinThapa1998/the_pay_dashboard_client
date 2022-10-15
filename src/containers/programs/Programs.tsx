@@ -22,7 +22,6 @@ export function Programs() {
         method: 'GET',
       }),
   );
-  console.log('🚀 ~ file: index.tsx ~ line 16 ~ const{data,isLoading}=useQuery ~ data', data);
 
   return (
     <Row gutter={[16, 16]}>
@@ -41,7 +40,12 @@ export function Programs() {
       {data?.data.length ? (
         data.data.map((item, index) => (
           <Col key={index} span={6}>
-            <CardComponent title={item.name} desc={item.desc} programId={item.id} />
+            <CardComponent
+              title={item.name}
+              desc={item.desc}
+              programId={item.id}
+              imageUrl={item.image_url}
+            />
           </Col>
         ))
       ) : (

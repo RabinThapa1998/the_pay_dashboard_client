@@ -1,4 +1,4 @@
-import { EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { EllipsisOutlined, SettingOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { useMutation } from '@tanstack/react-query';
 import { Avatar, Card, CardProps, Button, message } from 'antd';
 import React, { useState } from 'react';
@@ -12,8 +12,9 @@ interface ICard extends CardProps {
   title: string;
   desc: string;
   programId: string;
+  imageUrl?: string;
 }
-function CardComponent({ title, desc, programId, ...rest }: ICard) {
+function CardComponent({ title, desc, programId, imageUrl, ...rest }: ICard) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { mutate } = useMutation(
     () =>
@@ -57,16 +58,13 @@ function CardComponent({ title, desc, programId, ...rest }: ICard) {
       style={{
         width: '100%',
       }}
-      cover={
-        <img
-          alt='example'
-          src='https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png'
-        />
-      }
+      cover={<img alt='prgoram' src={imageUrl} />}
       actions={[
-        <SettingOutlined key='setting' onClick={handleSetting} />,
-        // <EditOutlined key='edit' />,
-        <EllipsisOutlined key='ellipsis' onClick={handleClickMore} />,
+        <EditOutlined key='delete' onClick={handleSetting} />,
+        // <EllipsisOutlined key='ellipsis' onClick={handleClickMore} />,
+        <Button onClick={handleClickMore} key='more'>
+          More
+        </Button>,
       ]}
       {...rest}
     >
@@ -78,6 +76,7 @@ function CardComponent({ title, desc, programId, ...rest }: ICard) {
       <Modal open={isModalOpen} onOk={handleModalOk} onCancel={hanldeModalCancel} footer={null}>
         {
           <div className='flex flex-col items-center justify-center'>
+            <div className='divide-x-2'></div>
             <p className='text-lg'>{title}</p>
             <h1 className='text-base font-semibold'>
               Are you sure you want to delete this program?

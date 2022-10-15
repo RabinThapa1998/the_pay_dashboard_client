@@ -14,7 +14,6 @@ const { Header, Sider, Content } = Layout;
 const Index = ({ children }: { children: React.ReactNode }) => {
   const [collapsed, setCollapsed] = useState(false);
   const { pathname } = useLocation();
-  console.log('🚀 ~ file: index.tsx ~ line 16 ~ Index ~ path', pathname);
   const navigate = useNavigate();
   return (
     <Layout className='h-screen'>

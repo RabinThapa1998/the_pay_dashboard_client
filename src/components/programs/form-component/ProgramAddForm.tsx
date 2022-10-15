@@ -1,10 +1,11 @@
-import { Button, Checkbox, Form, Input, message } from 'antd';
-import React from 'react';
+import { Button, Checkbox, Form, Input, message, InputNumber } from 'antd';
+import React, { useState } from 'react';
 import { request } from '~components/util';
 import { useMutation } from '@tanstack/react-query';
 const { TextArea } = Input;
 
 const ProgramAddForm: React.FC<{ closeModal: () => void }> = ({ closeModal }) => {
+  const [fieldCount, setFieldCount] = useState([0]);
   const { mutate, isLoading } = useMutation(
     (values) =>
       request({
@@ -24,12 +25,23 @@ const ProgramAddForm: React.FC<{ closeModal: () => void }> = ({ closeModal }) =>
     },
   );
 
+  const handleVotesChange = (value: any) => {
+    console.log('votes', value);
+  };
+  const handleCostsChange = (value: any) => {
+    console.log('cost', value);
+  };
+
   const onFinish = async (values: any) => {
-    await mutate(values);
+    console.log('🚀 ~ file: ProgramAddForm.tsx ~ line 28 ~ onFinish ~ values', values);
+    // await mutate(values);
   };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
+  };
+  const handleVotesCostAdd = (i: number) => {
+    setFieldCount([...fieldCount, i]);
   };
 
   return (
@@ -54,6 +66,14 @@ const ProgramAddForm: React.FC<{ closeModal: () => void }> = ({ closeModal }) =>
       <Form.Item label='Description' name='desc' rules={[{ required: false }]}>
         <TextArea rows={4} />
       </Form.Item>
+
+      {fieldCount.map((item) => (
+        <Input.Group compact key={item}>
+          <InputNumber name='votes' onChange={handleVotesChange} />
+          <InputNumber name='cost' onChange={handleCostsChange} />
+          <Button onClick={() => handleVotesCostAdd(item + 1)}>Add</Button>
+        </Input.Group>
+      ))}
 
       <Form.Item>
         <Button type='primary' htmlType='submit' loading={isLoading}>
