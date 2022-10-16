@@ -41,7 +41,8 @@ export function ProgramsDetail() {
     <Row gutter={[16, 16]}>
       <Col span={24}>
         {/* <Space direction='horizontal' style={{ width: '100%', justifyContent: 'center' }}> */}
-        <h3 className='text-center text-2xl uppercase'>{res?.data?.program?.name}</h3>
+        <h3 className='text-xs uppercase text-gray-400'>Program</h3>
+        <h3 className='text-xl font-semibold uppercase'>{res?.data?.program?.name}</h3>
         {/* </Space> */}
       </Col>
       <Col span={24}>
@@ -62,6 +63,11 @@ export function ProgramsDetail() {
             <Spin size='large' />
           </Space>
         )}
+      </Col>
+      <Col span={24}>
+        <Row>
+          <h3 className='text-xl font-semibold'>Payment Schema</h3>
+        </Row>
       </Col>
       <Modal
         open={isModalOpen}
