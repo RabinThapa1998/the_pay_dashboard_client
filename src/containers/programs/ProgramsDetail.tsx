@@ -8,6 +8,7 @@ import { Space, Spin } from 'antd';
 import { useParams } from 'react-router-dom';
 import { ContestantAddForm } from '~components/programs/form-component';
 import { SettingOutlined } from '@ant-design/icons';
+import { IProgramDetails } from '~/types/programs';
 
 export function ProgramsDetail() {
   const { id } = useParams();
@@ -15,12 +16,7 @@ export function ProgramsDetail() {
 
   const { data: res, isLoading } = useQuery(
     ['programs', id],
-    (): Promise<{
-      data: {
-        contestants: { [key: string]: string }[];
-        program: any;
-      };
-    }> =>
+    (): Promise<IProgramDetails> =>
       request({
         url: `/programs/${id}`,
         method: 'GET',
@@ -68,21 +64,28 @@ export function ProgramsDetail() {
         <Row>
           <h3 className='text-xl font-semibold'>Payment Schema</h3>
         </Row>
+        <div>
+          {res?.data.program.payment_schema.map((item) => (
+            <p key={item.votes}>
+              {item.votes} {item.cost}
+            </p>
+          ))}
+        </div>
       </Col>
-      <Modal
-        open={isModalOpen}
-        onCancel={() => setIsModalOpen(false)}
-        onOk={() => setIsModalOpen(false)}
-        footer={null}
-        title={'Add Program'}
-      >
-        {
+      {res && (
+        <Modal
+          open={isModalOpen}
+          onCancel={() => setIsModalOpen(false)}
+          onOk={() => setIsModalOpen(false)}
+          footer={null}
+          title={'Add Program'}
+        >
           <ContestantAddForm
             closeModal={handleModalClose}
-            program={{ programId: res?.data.program.id, programName: res?.data.program.name }}
+            program={{ programId: res.data.program.id, programName: res.data.program.name }}
           />
-        }
-      </Modal>
+        </Modal>
+      )}
     </Row>
   );
 }
