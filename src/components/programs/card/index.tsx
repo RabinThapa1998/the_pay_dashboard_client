@@ -58,7 +58,9 @@ function CardComponent({ title, desc, programId, imageUrl, ...rest }: ICard) {
       style={{
         width: '100%',
       }}
-      cover={<img alt='prgoram' src={imageUrl} />}
+      cover={
+        <img alt='prgoram' src={imageUrl} height={'200px'} width='100%' className='object-cover' />
+      }
       actions={[
         <EditOutlined key='delete' onClick={handleSetting} />,
         // <EllipsisOutlined key='ellipsis' onClick={handleClickMore} />,
