@@ -66,9 +66,17 @@ export function ProgramsDetail() {
         </Row>
         <div>
           {res?.data.program.payment_schema.map((item) => (
-            <p key={item.votes}>
-              {item.votes} {item.cost}
-            </p>
+            <div key={item.votes} className='flex flex-row gap-2'>
+              <p className='bg-orange-500 text-white py-4 px-2 w-20 rounded-sm text-xl text-center'>
+                {item.votes} <br />
+                votes
+              </p>
+              <p className='bg-green-500 text-white py-4 px-2 w-20 rounded-sm text-xl text-center'>
+                {item.cost}
+                <br />
+                cost
+              </p>
+            </div>
           ))}
         </div>
       </Col>
