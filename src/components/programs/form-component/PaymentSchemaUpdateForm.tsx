@@ -4,13 +4,15 @@ import { request } from '~components/util';
 import { useMutation } from '@tanstack/react-query';
 
 function PaymentSchemaUpdateForm({ id }: { id: string }) {
+  const [fieldCount, setFieldCount] = useState([0]);
+
   const [votesCost, setVotesCost] = useState<any>({
     votes: 0,
     cost: 0,
   });
   const [votesCostField, setVotesCostField] = useState<any>([]);
   const { mutate, isLoading } = useMutation(
-    (values) =>
+    (values: any) =>
       request({
         url: `/programs/${id}`,
         method: 'PATCH',
@@ -26,8 +28,8 @@ function PaymentSchemaUpdateForm({ id }: { id: string }) {
     },
   );
 
-  const onFinish = async (values: any) => {
-    await mutate(values);
+  const onFinish = async () => {
+    await mutate({ payment_schema: votesCostField });
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -44,6 +46,17 @@ function PaymentSchemaUpdateForm({ id }: { id: string }) {
       setVotesCostField([...votesCostField, votesCost]);
     }
   };
+  const handleVotesCostAdd = (i: number) => {
+    setFieldCount([...fieldCount, i]);
+    setVotesCost({
+      votes: 0,
+      cost: 0,
+    });
+  };
+  const handleVotesCostDelete = (i: number) => {
+    const newFieldCount = fieldCount.filter((item) => item !== i);
+    setFieldCount(newFieldCount);
+  };
   return (
     <Form
       name='contestants'
@@ -52,20 +65,24 @@ function PaymentSchemaUpdateForm({ id }: { id: string }) {
       autoComplete='off'
       layout='vertical'
     >
-      <Input.Group compact>
-        <InputNumber
-          name='votes'
-          onChange={(value) => handleCostVotesChange(value, 'votes')}
-          onBlur={handleVotesCostField}
-          type='number'
-        />
-        <InputNumber
-          name='cost'
-          onChange={(value) => handleCostVotesChange(value, 'cost')}
-          onBlur={handleVotesCostField}
-          type='number'
-        />
-      </Input.Group>
+      {fieldCount.map((item) => (
+        <Input.Group compact key={item}>
+          <InputNumber
+            name='votes'
+            onChange={(value) => handleCostVotesChange(value, 'votes')}
+            onBlur={handleVotesCostField}
+            type='number'
+          />
+          <InputNumber
+            name='cost'
+            onChange={(value) => handleCostVotesChange(value, 'cost')}
+            onBlur={handleVotesCostField}
+            type='number'
+          />
+          <Button onClick={() => handleVotesCostAdd(item + 1)}>Add</Button>
+          {item > 0 && <Button onClick={() => handleVotesCostDelete(item)}>Delete</Button>}
+        </Input.Group>
+      ))}
       <Form.Item>
         <Button type='primary' htmlType='submit' loading={isLoading}>
           Submit
