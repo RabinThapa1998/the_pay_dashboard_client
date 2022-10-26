@@ -76,7 +76,7 @@ export function ProgramsDetail() {
         <Row>
           <Button onClick={showDrawer}>Edit</Button>
           <Drawer title='Basic Drawer' placement='right' onClose={onClose} open={openSideDrawer}>
-            <PaymentSchemaUpdateForm />
+            {res && <PaymentSchemaUpdateForm id={res.data.program.id} />}
           </Drawer>
         </Row>
         <div>
