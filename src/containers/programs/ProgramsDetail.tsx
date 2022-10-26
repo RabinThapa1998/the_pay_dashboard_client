@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
 import { TableComponent } from '~/components';
-import { Button, Col, Row } from 'antd';
+import { Button, Col, Row, Drawer } from 'antd';
 import { Modal } from '~/components/common';
 import { useQuery } from '@tanstack/react-query';
 import { request } from '~components/util';
 import { Space, Spin } from 'antd';
 import { useParams } from 'react-router-dom';
-import { ContestantAddForm } from '~components/programs/form-component';
+import { ContestantAddForm, PaymentSchemaUpdateForm } from '~components/programs/form-component';
 import { SettingOutlined } from '@ant-design/icons';
 import { IProgramDetails } from '~/types/programs';
 
 export function ProgramsDetail() {
   const { id } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [openSideDrawer, setOpenSideDrawer] = useState(false);
+
+  const showDrawer = () => {
+    setOpenSideDrawer(true);
+  };
+
+  const onClose = () => {
+    setOpenSideDrawer(false);
+  };
 
   const { data: res, isLoading } = useQuery(
     ['programs', id],
@@ -63,6 +72,12 @@ export function ProgramsDetail() {
       <Col span={24}>
         <Row>
           <h3 className='text-xl font-semibold'>Payment Schema</h3>
+        </Row>
+        <Row>
+          <Button onClick={showDrawer}>Edit</Button>
+          <Drawer title='Basic Drawer' placement='right' onClose={onClose} open={openSideDrawer}>
+            <PaymentSchemaUpdateForm />
+          </Drawer>
         </Row>
         <div>
           {res?.data.program.payment_schema.map((item) => (
